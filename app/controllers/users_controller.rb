@@ -6,7 +6,6 @@ class UsersController < ApplicationController
         render json: {user: current_user, todo: current_user.todos}
     end
 
-
     def create
         @user = User.new(user_params)
         if @user.valid?

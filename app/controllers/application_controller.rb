@@ -13,7 +13,9 @@ class ApplicationController < ActionController::API
                 nil
             end  
         end
-        @user - User.find(@user_id)
+        
+        @user = User.find(@user_id)
+        byebug
     end
 
     def logged_in?
@@ -29,9 +31,9 @@ class ApplicationController < ActionController::API
         @user = User.find_by(username: params[:username])
         if @user && @user.authenticate(params[:password])
             @token = JWT.encode({user_id: @user.id}, 'secret')
-            render json: {user: @user, todos: @user.todos, token: @token}, status: :accepted
+            render json: {user: @user, todos: @user.todos, token: @token}, status: :accepted 
         else
-            render json: {erros: ['Invalid username or password']}, status: :unauthorized
+            render json: {errors: ['Invalid username or password']}, status: :unauthorized
         end
     end
 

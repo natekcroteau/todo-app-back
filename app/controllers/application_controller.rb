@@ -13,9 +13,7 @@ class ApplicationController < ActionController::API
                 nil
             end  
         end
-        
         @user = User.find(@user_id)
-        byebug
     end
 
     def logged_in?
